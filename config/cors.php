@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'api/auth/*', 'images/*', 'laravel/public/images/*'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
@@ -27,8 +27,8 @@ return [
 
     'exposed_headers' => [],
 
-    'max_age' => 600,
+    'max_age' => 0,
 
-    'supports_credentials' => true,
+    'supports_credentials' => false,
 
 ];
