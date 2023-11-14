@@ -1,0 +1,387 @@
+openapi: "3.0.2"
+info:
+  title: RESTAPI Cube Programming
+  version: "1.0"
+servers:
+  - url: http://localhost:8000/api
+tags:
+  - name: Data programmer
+    description: Untuk mengola data programmer
+paths:
+  /programmer:
+    get:
+      tags:
+        - Data programmer
+      summary: MENDAPATKAN data programmer
+      parameters:
+        - name: email
+          in: query
+          description: Menampilkan spesifik programmer berdasarkan idnya
+          schema:
+            type: string
+            nullable: true # Parameter bisa bernilai null (opsional)
+        - name: length
+          in: query
+          description: Jumlah item yang akan ditampilkan
+          schema:
+            type: number
+            nullable: true # Parameter bisa bernilai null (opsional)
+        - name: start
+          in: query
+          description: Indeks awal data yang akan ditampilkan
+          schema:
+            type: number
+            nullable: true # Parameter bisa bernilai null (opsional)
+        - name: search
+          in: query
+          description: Indeks awal data yang akan ditampilkan
+          schema:
+            type: string
+            nullable: true # Parameter bisa bernilai null (opsional)
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  draw:
+                    type: number
+                  recordsTotal:
+                    type: number
+                  recordsFiltered:
+                    type: number
+                  data:
+                    type: array # Perubahan: Objek data adalah array
+                    items:
+                      type: object
+                      properties:
+                        nama_panggilan:
+                          type: string
+                        nama_lengkap:
+                          type: string
+                        foto_utama:
+                          type: string
+                        foto_tentang:
+                          type: string
+                        tentang_diri:
+                          type: string
+                        tentang_skill:
+                          type: string
+                        tentang_pengalaman:
+                          type: string
+                        tentang_project:
+                          type: string
+                        alamat:
+                          type: string
+                        no_telp:
+                          type: string
+                        email:
+                          type: string
+                        tahun_mulai:
+                          type: number
+                        moto_project:
+                          type: string
+                        pdf_cv:
+                          type: string
+        400:
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data ... tidak valid"
+        404:
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data dengan id ... tidak ditemukan"
+    post:
+      tags:
+        - Data programmer
+      summary: MENAMBAHKAN data programmer
+      requestBody:
+        description: Data programmer untuk menambahkan data programmer
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nama_panggilan:
+                  type: string
+                nama_lengkap:
+                  type: string
+                foto_utama:
+                  type: string
+                foto_tentang:
+                  type: string
+                tentang_diri:
+                  type: string
+                tentang_skill:
+                  type: string
+                tentang_pengalaman:
+                  type: string
+                tentang_project:
+                  type: string
+                alamat:
+                  type: string
+                no_telp:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                tahun_mulai:
+                  type: number
+                moto_project:
+                  type: string
+                pdf_cv:
+                  type: string
+              
+              example:
+                nama_panggilan: "TEXT, nullable"
+                nama_lengkap: "TEXT, nullable"
+                foto_utama: "TEXT, nullable"
+                foto_tentang: "TEXT, nullable"
+                tentang_diri: "TEXT, nullable"
+                tentang_skill: "TEXT, nullable"
+                tentang_pengalaman: "TEXT, nullable"
+                tentang_project: "TEXT, nullable"
+                alamat: "TEXT, nullable"
+                no_telp: "TEXT, nullable"
+                email: "TEXT"
+                password: "TEXT"
+                tahun_mulai: "NUMBER nullable"
+                moto_project: "TEXT, nullable"
+                pdf_cv: "TEXT, nullable"
+      responses:
+        201:
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data ... berhasil ditambahkan"
+        400:
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data ... tidak valid"
+        409:
+          description: CONFLICT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data dideteksi berada di tempat sampah !! Pulihkan ?"
+    put:
+      tags:
+        - Data programmer
+      summary: MENGUBAH data programmer
+      requestBody:
+        description: Data programmer untuk mengubah data programmer
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_programmer:
+                  type: integer
+                nama_panggilan:
+                  type: string
+                nama_lengkap:
+                  type: string
+                foto_utama:
+                  type: string
+                foto_tentang:
+                  type: string
+                tentang_diri:
+                  type: string
+                tentang_skill:
+                  type: string
+                tentang_pengalaman:
+                  type: string
+                tentang_project:
+                  type: string
+                alamat:
+                  type: string
+                no_telp:
+                  type: string
+                email:
+                  type: string
+                tahun_mulai:
+                  type: integer
+                moto_project:
+                  type: string
+                pdf_cv:
+                  type: string
+              
+              example:
+                id_programmer: "NUMBER"
+                nama_panggilan: "TEXT, nullable"
+                nama_lengkap: "TEXT, nullable"
+                foto_utama: "TEXT, nullable"
+                foto_tentang: "TEXT, nullable"
+                tentang_diri: "TEXT, nullable"
+                tentang_skill: "TEXT, nullable"
+                tentang_pengalaman: "TEXT, nullable"
+                tentang_project: "TEXT, nullable"
+                alamat: "TEXT, nullable"
+                no_telp: "TEXT, nullable"
+                email: "TEXT, nullable"
+                tahun_mulai: "NUMBER nullable"
+                moto_project: "TEXT, nullable"
+                pdf_cv: "TEXT, nullable"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data ... berhasil diubah"
+        400:
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data ... tidak valid"
+        404:
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data dengan id ... tidak ditemukan"
+        409:
+          description: CONFLICT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data dideteksi berada di tempat sampah !! Pulihkan ?"
+    delete:
+      tags:
+        - Data programmer
+      summary: MENGHAPUS data programmer
+      requestBody:
+        description: Data programmer untuk menghapus data programmer
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_programmer:
+                  type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data ... berhasil dihapus"
+        404:
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+              example:
+                errors:
+                  message: "Data dengan id ... tidak ditemukan"
