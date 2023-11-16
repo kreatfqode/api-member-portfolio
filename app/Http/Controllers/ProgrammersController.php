@@ -25,7 +25,6 @@ class ProgrammersController extends Controller
         $data = $request->validated();
         $query = Programmers::select(
             'email',
-            'password',
             'nama_panggilan',
             'nama_lengkap',
             'warna_primary',
@@ -41,7 +40,7 @@ class ProgrammersController extends Controller
             'mulai_karir',
             'moto_project',
             'pdf_cv',
-        )->where('id_programmers', $data['id_programmers']);
+        )->where('id', $data['id_programmers']);
         $programmers = $query->get();
 
         /**
