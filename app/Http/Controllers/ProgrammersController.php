@@ -24,10 +24,23 @@ class ProgrammersController extends Controller
          */
         $data = $request->validated();
         $query = Programmers::select(
-            'nama',
-            'gambar',
-            'tanggal',
-            'link',
+            'email',
+            'password',
+            'nama_panggilan',
+            'nama_lengkap',
+            'warna_primary',
+            'warna_secondary',
+            'foto_utama',
+            'foto_tentang',
+            'tentang_diri',
+            'tentang_skill',
+            'tentang_pengalaman',
+            'tentang_project',
+            'alamat',
+            'no_telp',
+            'mulai_karir',
+            'moto_project',
+            'pdf_cv',
         )->where('id_programmers', $data['id_programmers']);
         $programmers = $query->get();
 

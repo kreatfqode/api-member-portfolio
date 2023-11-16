@@ -40,7 +40,7 @@ class ProgrammersRequest extends CoreRequest
                 ];
             case 'GET':
                 return [
-                    'id' => 'nullable|integer',
+                    'id_programmers' => 'nullable|integer',
                     'email' => 'nullable',
                     'search' => 'nullable',
                     'start' => 'nullable',
