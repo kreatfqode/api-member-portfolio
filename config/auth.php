@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'programmers',
     ],
 
@@ -36,7 +36,7 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'api' => [
             'driver' => 'session',
             'provider' => 'programmers',
         ],
@@ -60,7 +60,7 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'programmers' => [
             'driver' => 'eloquent',
             'model' => App\Models\API\Programmers::class,
         ],

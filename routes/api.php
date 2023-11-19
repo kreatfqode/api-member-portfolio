@@ -20,29 +20,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['middleware' => 'api'], function ($router) {
+Route::group(['middleware' => 'auth:sanctum'], function ($router) {
 
-
-    Route::get('/programmers', [ProgrammersController::class, 'read']);
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::put('/programmers', [ProgrammersController::class, 'update']);
 
-    Route::get('/projects', [ProjectsController::class, 'read']);
     Route::post('/projects', [ProjectsController::class, 'create']);
     Route::delete('/projects', [ProjectsController::class, 'delete']);
 
-    Route::get('/skills', [SkillsController::class, 'read']);
     Route::post('/skills', [SkillsController::class, 'create']);
     Route::delete('/skills', [SkillsController::class, 'delete']);
 
-    Route::get('/tools', [ToolsController::class, 'read']);
     Route::post('/tools', [ToolsController::class, 'create']);
     Route::delete('/tools', [ToolsController::class, 'delete']);
 
-    Route::get('/experiences', [ExperiencesController::class, 'read']);
     Route::post('/experiences', [ExperiencesController::class, 'create']);
     Route::delete('/experiences', [ExperiencesController::class, 'delete']);
 
 });
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/programmers', [ProgrammersController::class, 'read']);
+Route::get('/projects', [ProjectsController::class, 'read']);
+Route::get('/tools', [ToolsController::class, 'read']);
+Route::get('/experiences', [ExperiencesController::class, 'read']);
+Route::get('/skills', [SkillsController::class, 'read']);

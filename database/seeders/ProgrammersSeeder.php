@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\API\Programmers;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,27 +16,27 @@ class ProgrammersSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('programmers')->insert([
+        Programmers::create([
             'email' => 'muhamadoskhar@gmail.com',
             'password' => Hash::make('123456'),
         ]);
-        DB::table('programmers')->insert([
+        Programmers::create([
             'email' => 'dmalikakram@gmail.com',
             'password' => Hash::make('123456'),
         ]);
-        DB::table('programmers')->insert([
+        Programmers::create([
             'email' => 'aidilriansyahmanaf@gmail.com',
             'password' => Hash::make('123456'),
         ]);
-        DB::table('programmers')->insert([
+        Programmers::create([
             'email' => 'haidarhalwi22@gmail.com',
             'password' => Hash::make('123456'),
         ]);
-        DB::table('programmers')->insert([
+        Programmers::create([
             'email' => 'fariedm334@gmail.com',
             'password' => Hash::make('123456'),
         ]);
-        DB::table('programmers')->insert([
+        Programmers::create([
             'email' => 'mfajarganevi@gmail.com',
             'password' => Hash::make('123456'),
         ]);
