@@ -22,12 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'api'], function ($router) {
 
-    Route::group(['prefix' => 'auth'], function ($router) {
-        Route::post('/login', [AuthController::class, 'login']);
-        Route::post('/logout', [AuthController::class, 'logout']);
-        Route::post('/refresh', [AuthController::class, 'refresh']);
-        Route::post('/me', [AuthController::class, 'me']);
-    });
 
     Route::get('/programmers', [ProgrammersController::class, 'read']);
     Route::put('/programmers', [ProgrammersController::class, 'update']);
@@ -49,3 +43,6 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::delete('/experiences', [ExperiencesController::class, 'delete']);
 
 });
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
