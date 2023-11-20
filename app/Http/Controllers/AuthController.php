@@ -8,6 +8,7 @@ use App\Models\API\Programmers;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -52,7 +53,7 @@ class AuthController extends Controller
          * token berupa string
          * 
          */
-        $token = $programmers->createToken();
+        $token = $programmers->createToken('personal_access_tokens')->plainTextToken;
 
         /**
          * Kembalikan response yang sesuai
@@ -73,7 +74,7 @@ class AuthController extends Controller
          * Hapus token dari database
          * 
          */
-        auth()->user()->token()->delete();
+        Auth::user()->currentAccessToken()->delete();
 
         /**
          * Kembalikan response yang sesuai

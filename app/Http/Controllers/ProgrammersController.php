@@ -23,6 +23,7 @@ class ProgrammersController extends Controller
          * 
          */
         $data = $request->validated();
+
         $query = Programmers::select(
             'email',
             'nama_panggilan',
@@ -41,15 +42,15 @@ class ProgrammersController extends Controller
             'moto_project',
             'pdf_cv',
         )->where('id', $data['id_programmers']);
-        $programmers = $query->get();
+        $programmers = $query->first();
 
         /**
          * Mengembalikan response setelah data sudah difilter
          * sesuai kebutuhan untuk 
          */
-        return response()->json([
-            'data' => $programmers
-        ])->setStatusCode(200);
+        return response()->json(
+            $programmers
+        )->setStatusCode(200);
     }
 
     public function create(ProgrammersRequest $request): JsonResponse
